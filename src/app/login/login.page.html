@@ -6,4 +6,34 @@
 
 <ion-content padding>
 
+    <ion-row class="login-form">
+        <ion-col>
+            <ion-list inset class="no-border">
+ 
+              <ion-item>
+                <ion-label><ion-icon name="person"></ion-icon></ion-label>
+                <ion-input [(ngModel)]="username" placeholder="nome" type="text"></ion-input>
+              </ion-item>
+ 
+              <ion-item>
+                <ion-label><ion-icon name="lock"></ion-icon></ion-label>
+                <ion-input [(ngModel)]="password" placeholder="senha" type="password"></ion-input>
+              </ion-item>
+ 
+            </ion-list>
+
+	    <ion-button (click)="login()" shape="round" fill="outline" secondary class="login-button"> Login </ion-button>
+ 
+        </ion-col>
+    </ion-row>
+ 
+    <ion-row>
+        <ion-col>
+	  <ion-button (click)="launchSignup()" shape="round" fill="outline" secondary class="create-account">
+	    Cadastre sua nova conta
+	  </ion-button>	  
+        </ion-col>
+    </ion-row>
+
+  
 </ion-content>

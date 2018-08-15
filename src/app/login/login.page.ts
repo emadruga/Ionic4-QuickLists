@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+    
+    login() {
+	console.log("Let's do login...");
+    }
+
+    launchSignup() {
+	console.log("Let's do signup...");
+    }
 
 }
