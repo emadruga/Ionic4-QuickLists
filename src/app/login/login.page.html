@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Pré-Inscrição</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -22,17 +22,17 @@
  
             </ion-list>
 
-	    <ion-button (click)="login()" shape="round" fill="outline" secondary class="login-button"> Login </ion-button>
- 
+	    <button ion-button class="login-button" (click)="login()">Entrar</button>
+	    <!--- ion-button (click)="login()" shape="round" fill="outline" secondary class="login-button"> Login </ion-button-->
         </ion-col>
     </ion-row>
  
     <ion-row>
-        <ion-col>
-	  <ion-button (click)="launchSignup()" shape="round" fill="outline" secondary class="create-account">
-	    Cadastre sua nova conta
-	  </ion-button>	  
-        </ion-col>
+      <ion-col>
+	<div (click)="launchSignup()" class="create-account">
+          <span>Ou crie sua conta aqui.</span>
+        </div>
+      </ion-col>
     </ion-row>
 
   

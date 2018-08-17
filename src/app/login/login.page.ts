@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
+    public backgroundImage = 'assets/img/background/background-5.jpg'
     constructor() { }
 
     ngOnInit() {

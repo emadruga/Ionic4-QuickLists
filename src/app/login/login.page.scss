@@ -1,5 +1,11 @@
-.login {
- 
+//page-login {
+//
+//}
+ion-content {
+
+    background-color: var(--ion-color-secondary);
+
+
     scroll-content {
         display: flex;
         flex-direction: column;
@@ -26,11 +32,6 @@
     .login-logo {
         flex: 2;
     }
-
-    .no-border {
-	border-bottom: 0 !important;
-	box-shadow: none !important;
-    }
  
     .login-form {
         flex: 1;
@@ -40,12 +41,16 @@
         color: #fff;
         text-decoration: underline;
         background: none;
+        font-size: 0.9em;
     }
  
     .login-button {
-        width: 100%;
-        border-radius: 30px;
+	width: 100%;
+        border-radius: 30px !important;
+        padding-left: 10px !important;
+        margin-bottom: 10px;
         font-size: 0.9em;
+	color: #fff;
         background-color: transparent;
         border: 1px solid #fff;
     }
