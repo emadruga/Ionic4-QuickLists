@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
 	if (this.username !== undefined &&
 	    /^([a-z0-9]{5,})$/.test(this.username) ) {
 	    console.log("Let's do login for " + this.username);
-	    this.navCtrl.goForward('/checklists');
+	    this.navCtrl.goForward('/new-applicant');
 	} else {
 	    console.log("No username set yet!");
 	}
