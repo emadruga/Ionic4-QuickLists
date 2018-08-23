@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nova Ficha</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+      <ion-row class="login-form">
+        <ion-col>
+            <ion-list inset class="no-border">
+ 
+              <ion-item>
+                <ion-label><ion-icon name="person"></ion-icon></ion-label>
+                <ion-input [(ngModel)]="fullname" placeholder="nome completo" type="text"></ion-input>
+              </ion-item>
+
+	      <ion-item>
+		<ion-label>Data de Nascimento</ion-label>
+		<ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="data_nasc"
+			      monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez"
+			      ></ion-datetime>
+	      </ion-item>
+	      
+              <ion-item>
+                <ion-label><ion-icon name="contact"></ion-icon></ion-label>
+                <ion-input [(ngModel)]="rg_identidade" placeholder="Identidade (RG)" type="text"></ion-input>
+              </ion-item>
+	      
+              <ion-item>
+                <ion-label><ion-icon name="contact"></ion-icon></ion-label>
+                <ion-input [(ngModel)]="cpf" placeholder="CPF" type="text"></ion-input>
+              </ion-item>
+
+	      <ion-item>
+		<ion-label>Sexo</ion-label>
+		<ion-select [(ngModel)]="sexo" interface="popover" placeholder="Sexo">
+		  <ion-select-option value="m" selected={true}>Masculino</ion-select-option>
+		  <ion-select-option value="f">Feminino</ion-select-option>
+		</ion-select>
+	      </ion-item>
+
+              <ion-item>
+                <ion-label><ion-icon name="mail"></ion-icon></ion-label>
+                <ion-input [(ngModel)]="email" placeholder="email" type="text"></ion-input>
+              </ion-item>
+
+	      <ion-item>
+                <ion-label><ion-icon name="pin"></ion-icon></ion-label>
+                <ion-input [(ngModel)]="address" placeholder="endereço postal" type="text"></ion-input>
+              </ion-item>
+
+	      <ion-item>
+                <ion-label><ion-icon name="pin"></ion-icon></ion-label>
+                <ion-input [(ngModel)]="city" placeholder="cidade" type="text"></ion-input>
+              </ion-item>
+
+	      <ion-item>
+                <ion-label><ion-icon name="pin"></ion-icon></ion-label>
+                <ion-input [(ngModel)]="cep" placeholder="CEP" type="text"></ion-input>
+              </ion-item>
+
+	      <ion-item>
+		<ion-label>Deficiência</ion-label>
+		<ion-select  [(ngModel)]="deficiencia" interface="popover" placeholder="Escolha uma opção">
+		  <ion-select-option value="nao" selected={true}>Não</ion-select-option>
+		  <ion-select-option value="cad">Cadeirante</ion-select-option>
+		  <ion-select-option value="vis">Visual</ion-select-option>
+		  <ion-select-option value="aud">Auditiva</ion-select-option>
+		  <ion-select-option value="int">Intelectual</ion-select-option>
+		  <ion-select-option value="aut">Autista</ion-select-option>
+		</ion-select>
+	      </ion-item>
+
+	      <ion-item>
+		<ion-label>Cotista</ion-label>
+		<ion-select [(ngModel)]="cotista" interface="popover" placeholder="Escolha uma opção">
+		  <ion-select-option value="nao" selected={true}>Não</ion-select-option>
+		  <ion-select-option value="pre">Preto</ion-select-option>
+		  <ion-select-option value="par">Pardo</ion-select-option>
+		  <ion-select-option value="ind">Indígena</ion-select-option>
+		</ion-select>
+	      </ion-item>
+
+            </ion-list>
+
+	    <ion-button class="save-button" (click)="save()">Enviar</ion-button>
+	    <ion-button class="cancel-button" (click)="cancel()">Cancelar</ion-button>
+        </ion-col>
+    </ion-row>
+  
+</ion-content>
