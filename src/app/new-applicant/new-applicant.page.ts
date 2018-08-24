@@ -10,10 +10,14 @@ export class NewApplicantPage implements OnInit {
 
     private ehPNE: boolean;
     private sexo: string;
+    private data_nasc: string;
+
     
     constructor() {
 	this.ehPNE = false;
 	this.sexo = 'm';
+	this.data_nasc = new Date().toISOString();
+
     }
 
     ngOnInit() {
