@@ -1,6 +1,6 @@
 ion-content {
 
-    background-color: #bbb;
+    background-color: #eee;
 
     .pins {
         column-count: 1;
@@ -8,7 +8,8 @@ ion-content {
 
 
     .pin {
-        display: inline-block;
+        background-color: #bee;
+/*        display: inline-block;  */
     }
 
     .card {
@@ -28,51 +29,31 @@ ion-content {
         padding: 8px;
         border-bottom: 1px solid #eee;
     }
-
-    // Media queries
-    @media (min-width: 480px) {
-        .pins {
-            column-count: 3;
-        }
-        .item ion-avatar img {
-            width:  7vw !important;
-            height: 7vw !important;
-        }
-    }
-
-    @media (min-width: 640px) {
-        .pins {
-            column-count: 4;
-        }
-        .item ion-avatar img {
-            width:  5vw !important;
-            height: 5vw !important;
-            margin: 6px;
-        }
-    }
-
-    scroll-content {
+/*
+  scroll-content {
         display: flex;
         flex-direction: column;
     }
- 
+*/ 
     ion-row {
         align-items: center;
         text-align: center;
     }
- 
+
     ion-item {
         border-radius: 30px !important;
-        padding-left: 10px !important;
-	padding-top: 3px;
+        padding-left:  10px !important;
+        margin-top:    10px;
         margin-bottom: 10px;
+        margin-left:   10px;
+        margin-right:  10px;
         background-color: #f6f6f6;
         opacity: 0.7;
         font-size: 0.9em;
     }
  
     ion-list {
-        margin: 0;
+        margin: 3px;
     }
  
     .login-logo {
@@ -99,6 +80,28 @@ ion-content {
 	color: #fff;
         background-color: transparent;
         border: 1px solid #fff;
+    }
+
+        // Media queries
+    @media (min-width: 480px) {
+        .pins {
+            column-count: 2;
+        }
+        .item ion-avatar img {
+            width:  7vw !important;
+            height: 7vw !important;
+        }
+    }
+
+    @media (min-width: 640px) {
+        .pins {
+            column-count: 2;
+        }
+        .item ion-avatar img {
+            width:  5vw !important;
+            height: 5vw !important;
+            margin: 6px;
+        }
     }
  
 }

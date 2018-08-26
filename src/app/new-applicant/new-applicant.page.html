@@ -9,8 +9,8 @@
     <ion-col>
       <div class="pins">
 	<ion-card class="pin">
-          <ion-list inset class="no-border">
-	    
+          <!--ion-list inset class="no-border"-->
+	  <div>
             <ion-item>
               <ion-label><ion-icon name="person"></ion-icon></ion-label>
               <ion-input [(ngModel)]="fullname" placeholder="nome completo" type="text"></ion-input>
@@ -46,12 +46,13 @@
               <ion-label><ion-icon name="mail"></ion-icon></ion-label>
               <ion-input [(ngModel)]="email" placeholder="email" type="text"></ion-input>
             </ion-item>
-	  </ion-list>
+	  </div>
+	  <!--/ion-list-->
 	</ion-card>
-
+	
 	<ion-card class="pin">
-
-          <ion-list inset class="no-border">
+          <!--ion-list inset class="no-border"-->
+	  <div>
 	    <ion-item>
               <ion-label><ion-icon name="pin"></ion-icon></ion-label>
               <ion-input [(ngModel)]="address" placeholder="endereço postal" type="text"></ion-input>
@@ -88,13 +89,13 @@
 		<ion-select-option value="ind">Indígena</ion-select-option>
 	      </ion-select>
 	    </ion-item>
-
-          </ion-list>
+	  </div>
+          <!--/ion-list-->
 
 	</ion-card>
+	<ion-button class="save-button" (click)="save()">Enviar</ion-button>
+	<ion-button class="cancel-button" (click)="cancel()">Cancelar</ion-button>
       </div>
-      <ion-button class="save-button" (click)="save()">Enviar</ion-button>
-      <ion-button class="cancel-button" (click)="cancel()">Cancelar</ion-button>
     </ion-col>
   </ion-row>
   
