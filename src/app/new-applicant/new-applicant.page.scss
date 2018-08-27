@@ -1,6 +1,6 @@
 ion-content {
 
-    background-color: #eee;
+    background-color: var(--ion-color-light);
 
     .pins {
         column-count: 1;
@@ -9,7 +9,7 @@ ion-content {
 
     .pin {
         background-color: #bee;
-/*        display: inline-block;  */
+        /* display: inline-block;  */
     }
 
     .card {

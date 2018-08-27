@@ -7,8 +7,9 @@
 <ion-content padding>
 
     <ion-row class="login-form">
-        <ion-col>
-            <ion-list inset class="no-border">
+      <ion-col>
+            <!-- ion-list inset class="no-border"-->
+	    <div>
  
               <ion-item>
                 <ion-label><ion-icon name="person"></ion-icon></ion-label>
@@ -20,20 +21,22 @@
                 <ion-input [(ngModel)]="password" placeholder="senha" type="password"></ion-input>
               </ion-item>
  
-            </ion-list>
+            <!--/ion-list-->
+	    </div>
 
-	    <button ion-button class="login-button" (click)="login()">Entrar</button>
-	    <!--- ion-button (click)="login()" shape="round" fill="outline" secondary class="login-button"> Login </ion-button-->
+	    <!-- button ion-button class="login-button" (click)="login()">Entrar</button-->
+	    <ion-button (click)="login()" shape="round" fill="solid" secondary class="login-button">Entrar
+	    </ion-button>
         </ion-col>
     </ion-row>
  
-    <ion-row>
+    <!-- ion-row>
       <ion-col>
 	<div (click)="launchSignup()" class="create-account">
           <span>Ou crie sua conta aqui.</span>
         </div>
       </ion-col>
-    </ion-row>
+    </ion-row-->
 
   
 </ion-content>

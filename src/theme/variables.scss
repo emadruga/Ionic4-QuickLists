@@ -2,7 +2,7 @@
 // http://ionicframework.com/docs/theming/
 
 ion-content {
-  --ion-background-color: #32db64;
+  --ion-background-color: var(--ion-color-secondary);
 }
 
 /** Ionic CSS Variables **/
