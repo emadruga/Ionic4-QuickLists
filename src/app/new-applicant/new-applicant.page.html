@@ -13,7 +13,7 @@
 	  <div>
             <ion-item>
               <ion-label><ion-icon name="person"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="fullname" placeholder="nome completo" type="text"></ion-input>
+              <ion-input [(ngModel)]="nome_completo" placeholder="nome completo" type="text"></ion-input>
             </ion-item>
 
 	    <ion-item>
@@ -53,14 +53,14 @@
 	<ion-card class="pin">
           <!--ion-list inset class="no-border"-->
 	  <div>
-	    <ion-item>
+	    <!-- ion-item>
               <ion-label><ion-icon name="pin"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="address" placeholder="endereço postal" type="text"></ion-input>
-            </ion-item>
+              <ion-input [(ngModel)]="endereco" placeholder="endereço postal" type="text"></ion-input>
+            </ion-item-->
 
 	    <ion-item>
               <ion-label><ion-icon name="pin"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="city" placeholder="cidade" type="text"></ion-input>
+              <ion-input [(ngModel)]="cidade" placeholder="cidade" type="text"></ion-input>
             </ion-item>
 
 	    <ion-item>
@@ -68,6 +68,11 @@
               <ion-input [(ngModel)]="cep" placeholder="CEP" type="text"></ion-input>
             </ion-item>
 
+	    <ion-item>
+              <ion-label><ion-icon name="call"></ion-icon></ion-label>
+              <ion-input [(ngModel)]="telefone" placeholder="telefone para contato" type="text"></ion-input>
+            </ion-item>
+	    
 	    <ion-item>
 	      <ion-label>Deficiência</ion-label>
 	      <ion-select  [(ngModel)]="deficiencia" interface="popover" placeholder="Escolha uma opção">
