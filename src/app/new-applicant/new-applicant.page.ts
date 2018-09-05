@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonService } from '../services/person.service';
+
 @Component({
   selector: 'app-new-applicant',
   templateUrl: './new-applicant.page.html',
@@ -8,9 +9,18 @@ import { PersonService } from '../services/person.service';
 
 export class NewApplicantPage implements OnInit {
 
-    
-    private data_nasc: string;
-    
+    private nome_completo: string;
+    private data_nasc    : string;
+    private rg_identidade: string;
+    private cpf          : string;
+    private sexo         : string;
+    private email        : string;
+    private cidade       : string;
+    private cep          : string;
+    private telefone     : string;
+    private deficiencia  : string;
+    private cotista      : string;
+
     constructor(private personService: PersonService) {
 	this.data_nasc = new Date().toISOString();
 
