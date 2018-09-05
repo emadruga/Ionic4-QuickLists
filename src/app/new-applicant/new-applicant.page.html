@@ -13,11 +13,11 @@
 	  <div>
             <ion-item>
               <ion-label><ion-icon name="person"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="fullname" placeholder="nome completo" type="text"></ion-input>
+              <ion-input [(ngModel)]="nome_completo" placeholder="nome completo" type="text"></ion-input>
             </ion-item>
 
 	    <ion-item>
-	      <ion-label>Data de Nascimento</ion-label>
+	      <ion-label>data de nascimento</ion-label>
 	      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="data_nasc"
 			    min="1968" max="2008"
 			    monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez">
@@ -26,7 +26,7 @@
 	    
             <ion-item>
               <ion-label><ion-icon name="contact"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="rg_identidade" placeholder="Identidade (RG)" type="text"></ion-input>
+              <ion-input [(ngModel)]="rg_identidade" placeholder="identidade (RG)" type="text"></ion-input>
             </ion-item>
 	    
             <ion-item>
@@ -35,7 +35,7 @@
             </ion-item>
 
 	    <ion-item>
-	      <ion-label>Sexo</ion-label>
+	      <ion-label>sexo</ion-label>
 	      <ion-select [(ngModel)]="sexo" interface="popover" placeholder="Sexo">
 		<ion-select-option value="m" selected={true}>Masculino</ion-select-option>
 		<ion-select-option value="f">Feminino</ion-select-option>
@@ -65,11 +65,11 @@
 
 	    <ion-item>
               <ion-label><ion-icon name="pin"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="cep" placeholder="CEP" type="text"></ion-input>
+              <ion-input [(ngModel)]="cep" placeholder="CEP residência" type="text"></ion-input>
             </ion-item>
 
 	    <ion-item>
-	      <ion-label>Deficiência</ion-label>
+	      <ion-label>deficiência</ion-label>
 	      <ion-select  [(ngModel)]="deficiencia" interface="popover" placeholder="Escolha uma opção">
 		<ion-select-option value="nao" selected={true}>Não</ion-select-option>
 		<ion-select-option value="cad">Cadeirante</ion-select-option>
@@ -81,7 +81,7 @@
 	    </ion-item>
 
 	    <ion-item>
-	      <ion-label>Cotista</ion-label>
+	      <ion-label>cotista</ion-label>
 	      <ion-select [(ngModel)]="cotista" interface="popover" placeholder="Escolha uma opção">
 		<ion-select-option value="nao" selected={true}>Não</ion-select-option>
 		<ion-select-option value="pre">Preto</ion-select-option>
@@ -93,7 +93,7 @@
           <!--/ion-list-->
 	</ion-card>
 	<div align="center">
-	  <ion-button class="save-button" (click)="save()">Enviar</ion-button>
+	  <ion-button class="save-button" (click)="doSave()">Enviar</ion-button>
 	  <ion-button class="cancel-button" (click)="cancel()">Cancelar</ion-button>
 	</div>
       </div>

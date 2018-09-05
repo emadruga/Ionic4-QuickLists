@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { PersonService } from '../services/person.service';
 @Component({
   selector: 'app-new-applicant',
   templateUrl: './new-applicant.page.html',
@@ -8,14 +8,10 @@ import { Component, OnInit } from '@angular/core';
 
 export class NewApplicantPage implements OnInit {
 
-    private ehPNE: boolean;
-    private sexo: string;
-    private data_nasc: string;
-
     
-    constructor() {
-	this.ehPNE = false;
-	this.sexo = 'm';
+    private data_nasc: string;
+    
+    constructor(private personService: PersonService) {
 	this.data_nasc = new Date().toISOString();
 
     }
@@ -23,10 +19,16 @@ export class NewApplicantPage implements OnInit {
     ngOnInit() {
     }
 
-    updatePNE(){
-	this.ehPNE = !this.ehPNE;
-	console.log("Sexo = " + this.sexo);
-	console.log("PNE  = " + this.ehPNE);
+    doSave(): void {
+	console.log("Sending info to database...");
+
+	let personData = {
+	    _id:  "5b8fcc0d53e00907f9cfa0b4"
+	};
+	
+	this.personService.saveApplicant(personData);
     }
 
+ 
 }
+ 
