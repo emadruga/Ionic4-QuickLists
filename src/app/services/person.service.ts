@@ -12,7 +12,7 @@ export class PersonService {
 
 	console.log("Saving " + personData);
 	
-	let url = 'http://localhost:8080/api/rooms/reserve';
+	let url = 'http://localhost:8080/api/rooms/insert';
 	let hdrs =  new HttpHeaders().set('Content-Type', 'application/json');
 	console.log("Using " + url);
 	
