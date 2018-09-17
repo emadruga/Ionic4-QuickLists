@@ -10,7 +10,7 @@ export class PersonService {
 
     saveApplicant(personData): void {
 
-	console.log("Saving " + personData);
+	console.log(personData);
 	
 	let url = 'http://localhost:8080/api/rooms/insert';
 	let hdrs =  new HttpHeaders().set('Content-Type', 'application/json');
@@ -27,7 +27,7 @@ export class PersonService {
 
                           },
                           (err) => {
-                              console.log("Erro :" + err);
+                              console.log(err);
                           }
                       );
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { PersonService } from '../services/person.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class NewApplicantPage implements OnInit {
     private deficiencia  : string;
     private cotista      : string;
 
-    constructor(private personService: PersonService) {
+    constructor(private personService: PersonService,
+	        private navCtrl: NavController) {
 	this.data_nasc = new Date().toISOString();
 
     }
@@ -29,6 +31,9 @@ export class NewApplicantPage implements OnInit {
     ngOnInit() {
     }
 
+    doCancel(): void {
+	this.navCtrl.goBack();
+    }
     doSave(): void {
 	console.log("Sending info to database...");
 
