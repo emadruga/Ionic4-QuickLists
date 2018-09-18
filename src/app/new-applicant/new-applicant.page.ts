@@ -32,7 +32,7 @@ export class NewApplicantPage implements OnInit {
     }
 
     doCancel(): void {
-	this.navCtrl.goBack();
+	this.navCtrl.goBack("/opener");
     }
     doSave(): void {
 	console.log("Sending info to database...");
