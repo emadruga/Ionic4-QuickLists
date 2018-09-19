@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { PersonService } from '../services/person.service';
+import { Person }        from '../interfaces/person';
 
 @Component({
   selector: 'app-new-applicant',
@@ -52,7 +53,15 @@ export class NewApplicantPage implements OnInit {
 	};
 	console.log(personData);
 	
-	this.personService.saveApplicant(personData);
+	this.personService.saveApplicant(personData)
+	    .subscribe(
+		(person: Person) => {
+		    console.log("Id recebido: " + person._id);
+		}
+		(err) => {
+		    console.log(err);
+		}
+	    );
     }
 
  
