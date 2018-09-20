@@ -57,7 +57,7 @@ export class NewApplicantPage implements OnInit {
 	    .subscribe(
 		(person: Person) => {
 		    console.log("Id recebido: " + person._id);
-		}
+		},
 		(err) => {
 		    console.log(err);
 		}

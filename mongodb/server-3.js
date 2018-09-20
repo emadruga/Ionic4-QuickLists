@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
 app.use(bodyParser.json()); // Send JSON responses
 app.use(logger('dev')); // Log requests to API using morgan
 app.use(cors());
- 
+
 // Models
 var Room = mongoose.model('Room', {
     nome_completo:  String,
@@ -51,7 +51,7 @@ Room.count({}, function(err, count){
  
 app.post('/api/person', function(req, res) {
  
-    Room.find({ cpf: reg.body.cpf }, function(err, rooms){
+    Room.find({ cpf: req.body.cpf }, function(err, rooms){
         if(err){
             res.send(err);
         } else {
@@ -60,35 +60,62 @@ app.post('/api/person', function(req, res) {
     });   
 });
 
-   app.post('/api/rooms/insert', function(req, res) {
- 
-       console.log("Inserting: " + req.body.cpf );
-
-       var newPerson = new Room({
- 	   nome_completo:  req.body.nome_completo,
-	   /* data_nasc:      req.body.data_nasc, */
-	   rg_identidade:  req.body.rg_identidade, 
-	   cpf:	           req.body.cpf,
-	   sexo:	   req.body.sexo,	    
-	   email:	   req.body.email,	    
-	   cidade:	   req.body.cidade,	    
-	   cep:	           req.body.cep,	    
-	   telefone:	   req.body.telefone,	    
-	   deficiencia:    req.body.deficiencia,    
-	   cotista:        req.body.cotista         
-       });
-       
-       newPerson.save(function(err, doc){
+app.post('/api/rooms/insert', function(req, res, next) {
+    
+    /* check if CPF is defined first! */
+    const cpf_info = req.body.cpf;
+    
+    if (!cpf_info) {
+	const error = new Error('Faltando CPF no registro...')
+	error.httpStatusCode = 400
+	return next(error)
+    }
+    
+    Room.findOne({ cpf: cpf_info }, (err,user) => {
 	   if (err) {
-	       console.log("Server Insert Error: " + err);
-	       res.send(err);
+	       // handle error
+	       console.log("Problema no servidor: tente de novo mais tarde...");
+	       err.httpStatusCode = 500
+	       return next(err)
 	   }
+
+	   if (user) {
+	       // a user by this CPF exists already...
+	       console.log("CPF " + req.body.cpf + " existente...");
+	       const error = new Error('CPF existente...')
+	       error.httpStatusCode = 409
+	       return next(error)
 	       
-           console.log("Created person: " + doc.cpf);
-	   res.json(doc);
-       });
- 
+	   } else {
+	       // proceed with creating user...
+	       console.log("Inserting: " + req.body.cpf );
+
+	       var newPerson = new Room({
+ 		   nome_completo:  req.body.nome_completo,
+		   /* data_nasc:      req.body.data_nasc, */
+		   rg_identidade:  req.body.rg_identidade, 
+		   cpf:	           req.body.cpf,
+		   sexo:	   req.body.sexo,	    
+		   email:	   req.body.email,	    
+		   cidade:	   req.body.cidade,	    
+		   cep:	           req.body.cep,	    
+		   telefone:	   req.body.telefone,	    
+		   deficiencia:    req.body.deficiencia,    
+		   cotista:        req.body.cotista         
+	       });
+	       
+	       newPerson.save(function(err, doc){
+		   if (err) {
+		       console.log("Server Insert Error: " + err);
+		       res.send(err);
+		   }
+		   
+		   console.log("Created person: " + doc.cpf);
+		   res.json(doc);
+	       });
+	   }
     });
+});
 
     app.post('/api/rooms/reserve', function(req, res) {
  
@@ -111,7 +138,13 @@ app.post('/api/person', function(req, res) {
         });
  
     });
- 
+
+app.use((err, req, res, next) => {
+    // log the error...
+    // console.log(err);
+    res.sendStatus(err.httpStatusCode)
+})
+
 // listen
 app.listen(8080);
 console.log("App listening on port 8080");
