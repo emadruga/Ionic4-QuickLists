@@ -5,9 +5,19 @@ var mongoose = require('mongoose');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cors = require('cors');
- 
+
+var options = {
+    //server: {socketOptions: {keepAlive: 1, connectTimeoutMS: 30000}},
+    useMongoClient: true
+};
+
 // Configuration
-mongoose.connect('mongodb://localhost/hotels');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/hotels', options);
+
+mongoose.connection.on("error", function(err) {
+  console.log("Could not connect to MongoDb!");
+});
  
 app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
 app.use(bodyParser.json()); // Send JSON responses

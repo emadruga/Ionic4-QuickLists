@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { PersonService } from '../services/person.service';
 import { Person }        from '../interfaces/person';
 
@@ -24,6 +24,7 @@ export class NewApplicantPage implements OnInit {
     private cotista      : string;
 
     constructor(private personService: PersonService,
+		private alertCtrl: AlertController,
 	        private navCtrl: NavController) {
 	this.data_nasc = new Date().toISOString();
 
@@ -35,6 +36,40 @@ export class NewApplicantPage implements OnInit {
     doCancel(): void {
 	this.navCtrl.goBack("/opener");
     }
+
+    async alertInsertOk(msg: string) {
+	const alert = await this.alertCtrl.create({
+	    header: 'Sucesso',
+	    subHeader: 'Cadastro realizado',
+	    message: msg,
+	    buttons: ['OK']
+	});
+
+	await alert.present();
+    }
+
+    async alertConflict(msg: string) {
+	const alert = await this.alertCtrl.create({
+	    header: 'Conflito',
+	    subHeader: 'CPF já existente',
+	    message: msg,
+	    buttons: ['OK']
+	});
+
+	await alert.present();
+    }
+
+    async alertServerFailure(msg: string) {
+	const alert = await this.alertCtrl.create({
+	    header: 'Problema',
+	    subHeader: 'Serviço indisponível',
+	    message: msg,
+	    buttons: ['OK']
+	});
+
+	await alert.present();
+    }
+    
     doSave(): void {
 	console.log("Sending info to database...");
 
@@ -57,9 +92,16 @@ export class NewApplicantPage implements OnInit {
 	    .subscribe(
 		(person: Person) => {
 		    console.log("Id recebido: " + person._id);
+		    this.alertInsertOk("Informações salvas!");
+
 		},
 		(err) => {
 		    console.log(err);
+		    if (err.status == 409) {
+			this.alertConflict("Por favor, verifique dados fornecidos.");
+		    } else {
+			this.alertServerFailure("Por favor, tente mais tarde!");
+		    }
 		}
 	    );
     }
