@@ -102,7 +102,7 @@ app.post('/api/rooms/insert', function(req, res, next) {
 
 	       var newPerson = new Room({
  		   nome_completo:  req.body.nome_completo,
-		   /* data_nasc:      req.body.data_nasc, */
+		   data_nasc:      req.body.data_nasc,
 		   rg_identidade:  req.body.rg_identidade, 
 		   cpf:	           req.body.cpf,
 		   sexo:	   req.body.sexo,	    

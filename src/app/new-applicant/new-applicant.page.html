@@ -9,93 +9,104 @@
     <ion-col>
       <div class="pins">
 	<ion-card class="pin">
-          <!--ion-list inset class="no-border"-->
 	  <div>
             <ion-item>
               <ion-label><ion-icon name="person"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="nome_completo" placeholder="nome completo" type="text"></ion-input>
+	      <form [formGroup]="signUpForm">
+		<ion-input formControlName="nome_completo" placeholder="nome completo" type="text"></ion-input>
+	      </form>
             </ion-item>
-
-	    <ion-item>
-	      <ion-label>data de nascimento</ion-label>
-	      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="data_nasc"
-			    min="1968" max="2008"
-			    monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez">
-	      </ion-datetime>
+            <ion-item>
+	      <ion-label>nascimento</ion-label>
+	      <form [formGroup]="signUpForm">
+		<ion-input type="text" placeholder="dd-mm-aaaa" formControlName="data_nasc">
+		</ion-input>
+	      </form>
 	    </ion-item>
 	    
             <ion-item>
-              <ion-label><ion-icon name="contact"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="rg_identidade" placeholder="identidade (RG)" type="text"></ion-input>
+	      <ion-label><ion-icon name="contact"></ion-icon></ion-label>
+	      <form [formGroup]="signUpForm">
+		<ion-input formControlName="rg_identidade" placeholder="identidade (RG)" type="text"></ion-input>
+	      </form>
             </ion-item>
 	    
             <ion-item>
-              <ion-label><ion-icon name="contact"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="cpf" placeholder="CPF" type="text"></ion-input>
+              <ion-label>cpf</ion-label>
+	      <form [formGroup]="signUpForm">
+		<ion-input type="text" placeholder="ddd.ddd.ddd-dd" formControlName="cpf">
+		</ion-input>
+	      </form>
             </ion-item>
 
 	    <ion-item>
 	      <ion-label>sexo</ion-label>
-	      <ion-select [(ngModel)]="sexo" interface="popover" placeholder="Sexo">
-		<ion-select-option value="m" selected={true}>Masculino</ion-select-option>
-		<ion-select-option value="f">Feminino</ion-select-option>
-	      </ion-select>
+	      <form [formGroup]="signUpForm">
+		<ion-select formControlName="sexo" interface="popover" placeholder="Sexo">
+		  <ion-select-option value="m" selected="sexo === 'm'">Masculino</ion-select-option>
+		  <ion-select-option value="f" selected="sexo === 'f'">Feminino</ion-select-option>
+		</ion-select>
+	      </form>
 	    </ion-item>
 
             <ion-item>
               <ion-label><ion-icon name="mail"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="email" placeholder="email" type="text"></ion-input>
+	      <form [formGroup]="signUpForm">
+		<ion-input formControlName="email" placeholder="email" type="text"></ion-input>
+	      </form>
             </ion-item>
 	  </div>
-	  <!--/ion-list-->
 	</ion-card>
 	
 	<ion-card class="pin">
-          <!--ion-list inset class="no-border"-->
 	  <div>
-	    <!-- ion-item>
-              <ion-label><ion-icon name="pin"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="endereco" placeholder="endereço postal" type="text"></ion-input>
-            </ion-item-->
-
 	    <ion-item>
               <ion-label><ion-icon name="pin"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="cidade" placeholder="cidade" type="text"></ion-input>
+	      <form [formGroup]="signUpForm">
+		<ion-input formControlName="cidade" placeholder="cidade" type="text"></ion-input>
+	      </form>
             </ion-item>
 
 	    <ion-item>
               <ion-label><ion-icon name="pin"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="cep" placeholder="CEP residência" type="text"></ion-input>
+	      <form [formGroup]="signUpForm">
+		<ion-input formControlName="cep" placeholder="CEP residência" type="text"></ion-input>
+	      </form>
             </ion-item>
 
 	    <ion-item>
               <ion-label><ion-icon name="call"></ion-icon></ion-label>
-              <ion-input [(ngModel)]="telefone" placeholder="telefone para contato" type="text"></ion-input>
+	      <form [formGroup]="signUpForm">
+		<ion-input formControlName="telefone" placeholder="telefone para contato" type="text"></ion-input>
+	      </form>
             </ion-item>
 	    
 	    <ion-item>
 	      <ion-label>deficiência</ion-label>
-	      <ion-select  [(ngModel)]="deficiencia" interface="popover" placeholder="Escolha uma opção">
-		<ion-select-option value="nao" selected={true}>Não</ion-select-option>
-		<ion-select-option value="cad">Cadeirante</ion-select-option>
-		<ion-select-option value="vis">Visual</ion-select-option>
-		<ion-select-option value="aud">Auditiva</ion-select-option>
-		<ion-select-option value="int">Intelectual</ion-select-option>
-		<ion-select-option value="aut">Autista</ion-select-option>
-	      </ion-select>
+	      <form [formGroup]="signUpForm">
+		<ion-select  formControlName="deficiencia" interface="popover" placeholder="Escolha uma opção">
+		  <ion-select-option value="nao" selected={true}>Não</ion-select-option>
+		  <ion-select-option value="cad">Cadeirante</ion-select-option>
+		  <ion-select-option value="vis">Visual</ion-select-option>
+		  <ion-select-option value="aud">Auditiva</ion-select-option>
+		  <ion-select-option value="int">Intelectual</ion-select-option>
+		  <ion-select-option value="aut">Autista</ion-select-option>
+		</ion-select>
+	      </form>
 	    </ion-item>
 
 	    <ion-item>
 	      <ion-label>cotista</ion-label>
-	      <ion-select [(ngModel)]="cotista" interface="popover" placeholder="Escolha uma opção">
-		<ion-select-option value="nao" selected={true}>Não</ion-select-option>
-		<ion-select-option value="pre">Preto</ion-select-option>
-		<ion-select-option value="par">Pardo</ion-select-option>
-		<ion-select-option value="ind">Indígena</ion-select-option>
-	      </ion-select>
+	      <form [formGroup]="signUpForm">
+		<ion-select formControlName="cotista" interface="popover" placeholder="Escolha uma opção">
+		  <ion-select-option value="nao" selected={true}>Não</ion-select-option>
+		  <ion-select-option value="pre">Preto</ion-select-option>
+		  <ion-select-option value="par">Pardo</ion-select-option>
+		  <ion-select-option value="ind">Indígena</ion-select-option>
+		</ion-select>
+		</form>
 	    </ion-item>
 	  </div>
-          <!--/ion-list-->
 	</ion-card>
 	<div align="center">
 	  <ion-button class="save-button" (click)="doSave()">Enviar</ion-button>

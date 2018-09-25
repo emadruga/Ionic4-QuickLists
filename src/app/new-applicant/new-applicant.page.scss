@@ -1,3 +1,4 @@
+
 ion-content {
 
     background-color: var(--ion-color-light);
@@ -54,6 +55,15 @@ ion-content {
  
     ion-list {
         margin: 3px;
+    }
+
+    ion-select {
+	width: 100%;
+	max-width: 100%;
+    }
+
+    ion-input {
+	text-align: right;
     }
  
     .login-logo {
