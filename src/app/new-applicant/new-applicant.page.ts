@@ -35,7 +35,12 @@ export class NewApplicantPage implements OnInit {
 	this.nome_completo = this.formBuilder.control('', Validators.required);
 	this.data_nasc     = this.formBuilder.control('', Validators.required);
 	this.rg_identidade = this.formBuilder.control('', Validators.required);
-	this.cpf           = this.formBuilder.control('', Validators.required);
+	this.cpf           = this.formBuilder.control('', Validators.compose([
+	    Validators.required,
+	    Validators.minLength(14),
+	    Validators.maxLength(14),
+	    Validators.pattern('^[0-9]+.[0-9]+.[0-9]+-[0-9]+$')
+	]));
 	this.sexo          = this.formBuilder.control('', Validators.required);
 	this.email         = this.formBuilder.control('', Validators.required);
 	this.cidade        = this.formBuilder.control('', Validators.required);
@@ -98,9 +103,32 @@ export class NewApplicantPage implements OnInit {
 
 	await alert.present();
     }
+
+    async alertCpfInvalido(msg: string) {
+	const alert = await this.alertCtrl.create({
+	    header: 'Formato',
+	    subHeader: 'Informação de CPF ',
+	    message: msg,
+	    buttons: ['OK']
+	});
+
+	await alert.present();
+    }
+
+    async alertCampoObrigatorio(msg: string) {
+	const alert = await this.alertCtrl.create({
+	    header: 'Formato',
+	    subHeader: 'Campo Obrigatório',
+	    message: msg,
+	    buttons: ['OK']
+	});
+
+	await alert.present();
+    }
+
     
     doSave(): void {
-	console.log("Sending info to database...");
+
 
 	let personData = {
 	    nome_completo: this.nome_completo.value,
@@ -115,8 +143,18 @@ export class NewApplicantPage implements OnInit {
 	    deficiencia:   this.deficiencia.value,
 	    cotista:       this.cotista.value 
 	};
+	if (!this.cpf.valid) {
+	    this.alertCpfInvalido("Usar dígitos e separadores. Ex: 123.456.789-00" );
+	    return;
+	}
+	if(!this.nome_completo.touched) {
+	    this.alertCampoObrigatorio("Favor informar nome completo." );
+	    return;
+	}
+
 	console.log(personData);
 	
+	console.log("Sending info to database...");
 	this.personService.saveApplicant(personData)
 	    .subscribe(
 		(person: Person) => {
