@@ -13,13 +13,24 @@
             <ion-item>
               <ion-label><ion-icon name="person"></ion-icon></ion-label>
 	      <form [formGroup]="signUpForm">
-		<ion-input formControlName="nome_completo" placeholder="nome completo" type="text"></ion-input>
+		<ion-input maxlength="40"
+			   (keypress)="onKeyUp($event)"
+			   formControlName="nome_completo" placeholder="nome completo"
+			   type="text"></ion-input>
+
 	      </form>
             </ion-item>
+	    <div *ngIf="!signUpForm.controls.nome_completo.valid &&
+			signUpForm.controls.nome_completo.dirty"
+		 class="validator-error">
+	      <font color="red" style="font-size: 0.9em;">
+		Use letras e espaços somente.
+		</font>
+	    </div>	      
             <ion-item>
 	      <ion-label>nascimento</ion-label>
 	      <form [formGroup]="signUpForm">
-		<ion-input type="text" placeholder="dd-mm-aaaa" formControlName="data_nasc">
+		<ion-input maxlength="10" type="text" placeholder="dd-mm-aaaa" formControlName="data_nasc">
 		</ion-input>
 	      </form>
 	    </ion-item>
@@ -27,14 +38,14 @@
             <ion-item>
 	      <ion-label><ion-icon name="contact"></ion-icon></ion-label>
 	      <form [formGroup]="signUpForm">
-		<ion-input formControlName="rg_identidade" placeholder="identidade (RG)" type="text"></ion-input>
+		<ion-input  maxlength="30" formControlName="rg_identidade" placeholder="identidade (RG)" type="text"></ion-input>
 	      </form>
             </ion-item>
 	    
             <ion-item>
               <ion-label>cpf</ion-label>
 	      <form [formGroup]="signUpForm">
-		<ion-input type="text" placeholder="ddd.ddd.ddd-dd" formControlName="cpf">
+		<ion-input maxlength="14" type="text" placeholder="ddd.ddd.ddd-dd" formControlName="cpf">
 		</ion-input>
 	      </form>
             </ion-item>
@@ -52,7 +63,7 @@
             <ion-item>
               <ion-label><ion-icon name="mail"></ion-icon></ion-label>
 	      <form [formGroup]="signUpForm">
-		<ion-input formControlName="email" placeholder="email" type="text"></ion-input>
+		<ion-input maxlength="40" formControlName="email" placeholder="email" type="text"></ion-input>
 	      </form>
             </ion-item>
 	  </div>

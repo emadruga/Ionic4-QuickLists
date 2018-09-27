@@ -63,6 +63,7 @@ ion-content {
     }
 
     ion-input {
+	width: 100%;
 	text-align: right;
     }
  
@@ -80,7 +81,11 @@ ion-content {
         background: none;
         font-size: 0.9em;
     }
- 
+
+    .validation-error {
+	color: red;
+    }
+    
     .login-button {
 	width: 100%;
         border-radius: 30px !important;

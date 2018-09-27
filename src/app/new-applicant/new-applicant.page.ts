@@ -32,14 +32,23 @@ export class NewApplicantPage implements OnInit {
 		private formBuilder: FormBuilder,
 	        private navCtrl: NavController) {
 
-	this.nome_completo = this.formBuilder.control('', Validators.required);
-	this.data_nasc     = this.formBuilder.control('', Validators.required);
+	this.nome_completo = this.formBuilder.control('',  Validators.compose([
+	    Validators.required,
+	    Validators.maxLength(40),
+	    Validators.pattern('^[A-Za-z ]+$')
+	])); 
+	this.data_nasc     = this.formBuilder.control('', Validators.compose([
+	    Validators.required,
+	    Validators.minLength(10),
+	    Validators.maxLength(10),
+	    Validators.pattern('^[0-9]{2}\-[0-9]{2}\-[0-9]{2}$')
+	]));
 	this.rg_identidade = this.formBuilder.control('', Validators.required);
 	this.cpf           = this.formBuilder.control('', Validators.compose([
 	    Validators.required,
 	    Validators.minLength(14),
 	    Validators.maxLength(14),
-	    Validators.pattern('^[0-9]+.[0-9]+.[0-9]+-[0-9]+$')
+	    Validators.pattern('^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$')
 	]));
 	this.sexo          = this.formBuilder.control('', Validators.required);
 	this.email         = this.formBuilder.control('', Validators.required);
@@ -104,11 +113,11 @@ export class NewApplicantPage implements OnInit {
 	await alert.present();
     }
 
-    async alertCpfInvalido(msg: string) {
+    async alertProblemaFormato(msg1, msg2: string) {
 	const alert = await this.alertCtrl.create({
 	    header: 'Formato',
-	    subHeader: 'Informação de CPF ',
-	    message: msg,
+	    subHeader: msg1,
+	    message: msg2,
 	    buttons: ['OK']
 	});
 
@@ -126,12 +135,22 @@ export class NewApplicantPage implements OnInit {
 	await alert.present();
     }
 
+    public onKeyUp(event: any) {
+
+	let newValue = event.target.value;
+
+	let regExp = new RegExp('^[A-Za-z? ]+$');
+
+	if (! regExp.test(newValue)) {
+	    event.target.value = newValue.slice(0, -1);
+	}
+    }
     
     doSave(): void {
 
 
 	let personData = {
-	    nome_completo: this.nome_completo.value,
+	    nome_completo: this.nome_completo.value.trim(),
 	    data_nasc:     this.data_nasc.value,
 	    rg_identidade: this.rg_identidade.value,
 	    cpf:	   this.cpf.value,
@@ -143,8 +162,21 @@ export class NewApplicantPage implements OnInit {
 	    deficiencia:   this.deficiencia.value,
 	    cotista:       this.cotista.value 
 	};
+
+	if (!this.nome_completo.valid) {
+	    this.alertProblemaFormato("Nome Completo",
+				      "Usar até 40 letras no nome e sobrenome, separados por espaço." );
+	    return;
+	}
+	
+	if (!this.data_nasc.valid) {
+	    this.alertProblemaFormato("Data de Nascimento",
+				      "Informar dia, mês e ano no formato 'dd-mm-aaaa'. Ex: 02-02-1996 e 31-12-2008." );
+	    return;
+	}
 	if (!this.cpf.valid) {
-	    this.alertCpfInvalido("Usar dígitos e separadores. Ex: 123.456.789-00" );
+	    this.alertProblemaFormato("Informação de CPF",
+				      "Usar dígitos e separadores '.' e '-'. Ex: 123.456.789-00" );
 	    return;
 	}
 	if(!this.nome_completo.touched) {
