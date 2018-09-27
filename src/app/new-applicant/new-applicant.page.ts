@@ -41,7 +41,7 @@ export class NewApplicantPage implements OnInit {
 	    Validators.required,
 	    Validators.minLength(10),
 	    Validators.maxLength(10),
-	    Validators.pattern('^[0-9]{2}\-[0-9]{2}\-[0-9]{2}$')
+	    Validators.pattern('^[0-9]{2}\-[0-9]{2}\-[0-9]{4}$')
 	]));
 	this.rg_identidade = this.formBuilder.control('', Validators.required);
 	this.cpf           = this.formBuilder.control('', Validators.compose([
