@@ -25,6 +25,8 @@ export class NewApplicantPage implements OnInit {
     private deficiencia  : FormControl;
     private cotista      : FormControl;
 
+    private accented_regex = '^[a-zA-Z \u00C0-\u017F]+$';
+
     private signUpForm       : FormGroup;
 
     constructor(private personService: PersonService,
@@ -35,7 +37,7 @@ export class NewApplicantPage implements OnInit {
 	this.nome_completo = this.formBuilder.control('',  Validators.compose([
 	    Validators.required,
 	    Validators.maxLength(40),
-	    Validators.pattern('^[A-Za-z ]+$')
+	    Validators.pattern(this.accented_regex)
 	])); 
 	this.data_nasc     = this.formBuilder.control('', Validators.compose([
 	    Validators.required,
@@ -48,7 +50,7 @@ export class NewApplicantPage implements OnInit {
 	    Validators.required,
 	    Validators.minLength(14),
 	    Validators.maxLength(14),
-	    Validators.pattern('^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$')
+	    Validators.pattern('^[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}$')
 	]));
 	this.sexo          = this.formBuilder.control('', Validators.required);
 	this.email         = this.formBuilder.control('', Validators.required);
@@ -139,7 +141,7 @@ export class NewApplicantPage implements OnInit {
 
 	let newValue = event.target.value;
 
-	let regExp = new RegExp('^[A-Za-z? ]+$');
+	let regExp = new RegExp(this.accented_regex);
 
 	if (! regExp.test(newValue)) {
 	    event.target.value = newValue.slice(0, -1);

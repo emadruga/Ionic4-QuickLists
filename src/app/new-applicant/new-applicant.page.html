@@ -11,7 +11,13 @@
 	<ion-card class="pin">
 	  <div>
             <ion-item>
-              <ion-label><ion-icon name="person"></ion-icon></ion-label>
+              <ion-label>
+		<ion-icon  *ngIf="!signUpForm.controls.nome_completo.valid &&
+				  signUpForm.controls.nome_completo.dirty; else normalIcon"
+			   name="warning" color="danger"></ion-icon>
+		<ng-template #normalIcon> <ion-icon  name="person"></ion-icon>
+		</ng-template>
+	      </ion-label>
 	      <form [formGroup]="signUpForm">
 		<ion-input maxlength="40"
 			   (keypress)="onKeyUp($event)"
